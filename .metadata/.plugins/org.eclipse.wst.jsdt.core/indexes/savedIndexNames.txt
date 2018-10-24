@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/home/zed/courseservice/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+2088906121.index
+3143036009.index
+4087959415.index
+3614026144.index
+3811496343.index
+1564783091.index
