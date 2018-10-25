@@ -2,7 +2,7 @@ package com.csye6225.fall2018.courseservice.datamodel;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
+ import javax.xml.bind.annotation.XmlRootElement;
 
 
 public class Professor {
