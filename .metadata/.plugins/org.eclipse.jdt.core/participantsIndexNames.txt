@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-/home/zed/courseservice/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/49276926.index
-/courseservice/src/main/java
