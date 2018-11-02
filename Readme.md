@@ -18,6 +18,7 @@
 ## API
 http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi
 
+  ### programs  
   Get /programs  
   Get /programs/{programId}  
   Post /programs  
@@ -29,6 +30,8 @@ http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/web
   ```
   Put /programs/{programId}  
   Delete /programs/{programId}  
+
+  ### courses  
   Get /courses  
   Get /courses/{courseId}  
   Post /courses  
@@ -45,6 +48,8 @@ http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/web
   ```
   Put /courses/{courseId}  
   Delete /courses/{courseId}  
+
+  ### lectures
   Get /lectures  
   Get /lectures/{lectureId}  
   Post /lectures
@@ -60,6 +65,8 @@ http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/web
   ```  
   Put /lectures/{lectureId}  
   Delete /lectures/{lectureId}  
+
+  ### professors
   Get /professors  
   Get /professors/{professorId}  
   Post /professors  
@@ -72,6 +79,8 @@ http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/web
   ```
   Put /professors/{professorId}  
   Delete /professors/{professorId}  
+
+  ### students
   Get /students  
   Get /students/{studentId}  
   Post /students  
