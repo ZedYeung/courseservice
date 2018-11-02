@@ -65,9 +65,9 @@ http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/web
   Post /professors  
   ```
   {
-  	"department": "IS",
-  	"firstName": "Ab",
-  	"joiningDate": "2019-10-11T20:20:11.234"
+    "department": "IS",
+    "firstName": "Ab",
+    "joiningDate": "2019-10-11T20:20:11.234"
   }
   ```
   Put /professors/{professorId}  
