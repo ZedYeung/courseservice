@@ -24,15 +24,15 @@ public class ProfessorsService {
 	}
 
 	// Adding a professor
-	public void addProfessor(String name, String department, Date joiningDate) {
-		// Next Id 
-		long nextAvailableId = prof_Map.size() + 1;
-		
-		//Create a Professor Object
-		Professor prof = new Professor(nextAvailableId, name , 
-				department, joiningDate);
-		prof_Map.put(nextAvailableId, prof);
-	}
+//	public void addProfessor(String name, String department, Date joiningDate) {
+//		// Next Id 
+//		long nextAvailableId = prof_Map.size() + 1;
+//		
+//		//Create a Professor Object
+//		Professor prof = new Professor(nextAvailableId, name , 
+//				department, joiningDate);
+//		prof_Map.put(nextAvailableId, prof);
+//	}
 	
 	public Professor addProfessor(Professor prof) {	
 		long nextAvailableId = prof_Map.size() + 1;

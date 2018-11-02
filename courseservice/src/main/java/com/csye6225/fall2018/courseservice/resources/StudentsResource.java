@@ -37,8 +37,8 @@ public class StudentsResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addStudent(Student student) {
-		studentService.addStudent(student);
+	public Student addStudent(Student student) {
+		return studentService.addStudent(student);
 	}
 	
 	@PUT

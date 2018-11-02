@@ -74,7 +74,7 @@ public class ProfessorsResource {
 		return profService.updateProfessorInformation(profId, prof);
 	}
 	
-	public void addProfessor(String name, String department, Date joiningDate) {
-		profService.addProfessor(name, department, joiningDate);
-	}
+//	public void addProfessor(String name, String department, Date joiningDate) {
+//		profService.addProfessor(name, department, joiningDate);
+//	}
  }

@@ -4,19 +4,19 @@ import java.util.List;
 public class Course {
 	private long courseId;
 	private String courseName;
-	private List<Lecture> lectures;
+	private List<Long> lectures;
 	private String board;
 	private String roster;
-	private List<Student> enrolledStudents;
-	private Professor associatedProf;
-	private Student courseTA;
+	private List<Long> enrolledStudents;
+	private long associatedProf;
+	private long courseTA;
 	
 	public Course() {
 		
 	}
 	
-	public Course(long courseId, String courseName, List<Lecture> lectures, String board, String roster,
-			List<Student> enrolledStudents, Professor associatedProf, Student courseTA) {
+	public Course(long courseId, String courseName, List<Long> lectures, String board, String roster,
+			List<Long> enrolledStudents, long associatedProf, long courseTA) {
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.lectures = lectures;
@@ -43,11 +43,11 @@ public class Course {
 		this.courseName = courseName;
 	}
 
-	public List<Lecture> getLectures() {
+	public List<Long> getLectures() {
 		return lectures;
 	}
 
-	public void setLectures(List<Lecture> lectures) {
+	public void setLectures(List<Long> lectures) {
 		this.lectures = lectures;
 	}
 
@@ -67,27 +67,27 @@ public class Course {
 		this.roster = roster;
 	}
 
-	public List<Student> getEnrolledStudents() {
+	public List<Long> getEnrolledStudents() {
 		return enrolledStudents;
 	}
 
-	public void setEnrolledStudents(List<Student> enrolledStudents) {
+	public void setEnrolledStudents(List<Long> enrolledStudents) {
 		this.enrolledStudents = enrolledStudents;
 	}
 
-	public Professor getAssociatedProf() {
+	public long getAssociatedProf() {
 		return associatedProf;
 	}
 
-	public void setAssociatedProf(Professor associatedProf) {
+	public void setAssociatedProf(long associatedProf) {
 		this.associatedProf = associatedProf;
 	}
 
-	public Student getCourseTA() {
+	public long getCourseTA() {
 		return courseTA;
 	}
 
-	public void setCourseTA(Student courseTA) {
+	public void setCourseTA(long courseTA) {
 		this.courseTA = courseTA;
 	}
 	

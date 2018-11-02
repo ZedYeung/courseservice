@@ -6,7 +6,7 @@ public class Student {
 	private String studentName;
 	private long studentID;
 	private String imageURL;
-	private List<String> enrolledCourses;
+	private List<Long> enrolledCourses;
 	private String programName;
 	
 	public Student() {
@@ -14,12 +14,12 @@ public class Student {
 	}
 	
 	public Student(String studentName, long studentID, String imageURL,
-			String programName, List<String> enrolledCourses) {
+			String programName, List<Long> enrolledCourses) {
 		this.studentName = studentName;
 		this.studentID = studentID;
 		this.imageURL = imageURL;
 		this.programName = programName;
-		this.enrolledCourses = new ArrayList<String>();
+		this.enrolledCourses = new ArrayList<Long>();
 	}
 
 	public String getStudentName() {
@@ -46,11 +46,11 @@ public class Student {
 		this.imageURL = imageURL;
 	}
 
-	public List<String> getEnrolledCourses() {
+	public List<Long> getEnrolledCourses() {
 		return enrolledCourses;
 	}
 
-	public void setEnrolledCourses(List<String> enrolledCourses) {
+	public void setEnrolledCourses(List<Long> enrolledCourses) {
 		this.enrolledCourses = enrolledCourses;
 	}
 

@@ -37,8 +37,8 @@ public class ProgramsResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addProgram(Program program) {
-		programService.addProgram(program);
+	public Program addProgram(Program program) {
+		return programService.addProgram(program);
 	}
 	
 	@PUT

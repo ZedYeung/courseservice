@@ -20,6 +20,6 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Avinav - I Got My Rest Service Up And Running!";
+        return "I get something";
     }
 }

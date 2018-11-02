@@ -27,7 +27,7 @@ public class LecturesService {
 		long nextAvailableId = lecturesMap.size() + 1;
 		lecture.setLectureId(nextAvailableId);
 		lecturesMap.put(nextAvailableId, lecture);
-		return lecture;
+		return lecturesMap.get(nextAvailableId);
 	}
 	
 	//PUT, update information of a lecture

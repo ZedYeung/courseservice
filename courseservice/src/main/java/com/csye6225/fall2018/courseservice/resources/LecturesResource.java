@@ -37,8 +37,8 @@ public class LecturesResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addLecture(Lecture lecture) {
-		lectureService.addLecture(lecture);
+	public Lecture addLecture(Lecture lecture) {
+		return lectureService.addLecture(lecture);
 	}
 	
 	@PUT

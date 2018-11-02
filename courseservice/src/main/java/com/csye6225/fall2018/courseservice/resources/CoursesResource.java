@@ -37,8 +37,8 @@ public class CoursesResource {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addCourse(Course course) {
-		courseService.addCourse(course);
+	public Course addCourse(Course course) {
+		return courseService.addCourse(course);
 	}
 	
 	@PUT
