@@ -1,96 +1,76 @@
 # CSYE6225 Assignment - Student Management System API
 
 ## Overview
-  - The system manages Professors, Students and Programs.
-  - Every Program has Courses
-  - Every Course has Lectures, and each lecture will have notes, and associated material
-  - Every Course will have a board
-  - Every Course will have a roster
-  - Every Course has enrolled Students
-  - Every Course has one associated Professor, and a Student TA
-  - Every Student has information in the system
-       - Name        
-       - StudentId
-       - image     
-       - courses enrolled
-       - program name
+```
+Professors
+     - Id - Autog-generated and Dynamo db hash key
+     - professorId - DynamoDbIndexHashKey, a Global Secondary Index (GSI)
+     - firstName
+     - lastName
+     - joiningDate
+     - department
+Course
+     - Id (Dynamo Db generated) and hash key
+     - courseId - DynamoDbIndexHashKey, a Global Secondary Index (GSI)
+     - professorId
+     - taId
+     - department
+     - boardId
+     - listOfRegisteredStudents/roster - has student Id list (this is the roster)
+Board
+     - Id (Dynamo Db generated) and hash key
+     - boardId - DynamoDbIndexHashKey, a Global Secondary Index (GSI)
+     - courseId
+Announcements
+     - Id (Dynamo Db generated) and hash key
+     - announcementId - dynamodb Index range key part of the GSI
+     - announcementText - (ensure text size is no more than 160 characters)
+     - boardId -DynamoDbIndexHashKey, part of the GSI Global Secondary Index (GSI)
+
+Student
+     - Id (Dynamo Db generated) and hash key
+     - studentId - DynamoDbIndexHashKey, a Global Secondary Index (GSI)
+     - firstName
+     - lastName
+     - joiningDate
+     - department
+     - registeredCourses - has list of registered courseIds
+```
 
 ## API
 http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi
 
-  ### programs  
-  Get /programs  
-  Get /programs/{programId}  
-  Post /programs  
-  ```
-  {
-    "programName": "IS",
-    "courses": [0, 1]
-  }
-  ```
-  Put /programs/{programId}  
-  Delete /programs/{programId}  
+  ### professor
+  GET /professor  
+  GET /professor/{professorId}    
+  POST /professor  
+  PUT /professor/{professorId}  
+  DELETE /professor/{professorId}  
 
-  ### courses  
-  Get /courses  
-  Get /courses/{courseId}  
-  Post /courses  
-  ```
-  {
-    "courseName": "Cloud Computing",
-    "lectures": [0, 1],
-    "board": "board",
-    "roster": "roster",
-    "enrolledStudents": [0, 1],
-    "associatedProf": 0,
-    "courseTA": 1  
-  }
-  ```
-  Put /courses/{courseId}  
-  Delete /courses/{courseId}  
+  ### course
+  GET /course  
+  GET /course/{courseId}  
+  POST /course  
+  PUT /course/{courseId}  
+  DELETE /course/{courseId}  
 
-  ### lectures
-  Get /lectures  
-  Get /lectures/{lectureId}  
-  Post /lectures
-  ```
-  {
-    "associatedMaterialURL": "associatedMaterialURL",
-    "lectureName": "leture1",
-    "notesURL": [
-      "12313123",
-      "456456"
-    ]
-  }
-  ```  
-  Put /lectures/{lectureId}  
-  Delete /lectures/{lectureId}  
+  ### board
+  GET /board  
+  GET /board/{boardId}  
+  POST /board  
+  PUT /board/{boardId}  
+  DELETE /board/{boardId}  
 
-  ### professors
-  Get /professors  
-  Get /professors/{professorId}  
-  Post /professors  
-  ```
-  {
-    "department": "IS",
-    "firstName": "Ab",
-    "joiningDate": "2019-10-11T20:20:11.234"
-  }
-  ```
-  Put /professors/{professorId}  
-  Delete /professors/{professorId}  
+  ### announcement
+  GET /announcement  
+  GET /announcement/{announcementId}  
+  POST /announcement  
+  PUT /announcement/{announcementId}  
+  DELETE /announcement/{announcementId}  
 
-  ### students
-  Get /students  
-  Get /students/{studentId}  
-  Post /students  
-  ```
-  {
-    "studentName": "KK",
-    "imageURL": "imageURL",
-    "programName": "IS",
-    "enrolledCourses": [0, 1]
-  }
-  ```
-  Put /students/{studentId}  
-  Delete /students/{studentId}  
+  ### student
+  GET /student  
+  GET /student/{studentId}  
+  POST /student  
+  PUT /student/{studentId}  
+  DELETE /student/{studentId}  
