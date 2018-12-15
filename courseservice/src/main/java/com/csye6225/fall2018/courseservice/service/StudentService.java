@@ -2,8 +2,6 @@ package com.csye6225.fall2018.courseservice.service;
 
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClient;
-import com.amazonaws.services.sns.model.CreateTopicRequest;
-import com.amazonaws.services.sns.model.CreateTopicResult;
 import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -37,7 +35,21 @@ public class StudentService {
         CourseService courseService = new CourseService();
         Course course = courseService.get(courseId);
         Student student = get(studentId);
-
+        
+        List<String> registeredCourses = student.getRegisteredCourses();
+        
+        if (registeredCourses.size() >= 3) {
+        	System.out.println("Not allow to register more than three courses");
+        	return;
+        }
+        
+        List<String> roster = course.getRoster();
+        roster.add(studentId);
+        registeredCourses.add(courseId);
+        
+        course.setRoster(roster);
+        student.setRegisteredCourses(registeredCourses);
+        
         //create a new SNS client and set endpoint
         // deprecated
         // AmazonSNSClient snsClient = new AmazonSNSClient();
