@@ -11,6 +11,7 @@ Course
      - department
      - boardId
      - listOfRegisteredStudents/roster - has student Id list (this is the roster)
+     - notificationTopic // NEW FIELD for storing sns topic.
 */
 
 
@@ -24,6 +25,7 @@ public class Course {
     private String department;
     private String boardId;
     private List<String> roster;
+    private String notificationTopic;
 
     public Course() {
 
@@ -92,5 +94,14 @@ public class Course {
 
     public void setRoster(List<String> roster) {
         this.roster = roster;
+    }
+
+    @DynamoDBAttribute(attributeName = "notificationTopic")
+    public String getNotificationTopic() {
+        return notificationTopic;
+    }
+
+    public void setNotificationTopic(String notificationTopic) {
+        this.notificationTopic = notificationTopic;
     }
 }
