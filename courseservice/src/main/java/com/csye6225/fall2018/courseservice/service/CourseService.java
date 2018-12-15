@@ -1,4 +1,9 @@
 package com.csye6225.fall2018.courseservice.service;
+
+import com.amazonaws.services.sns.AmazonSNS;
+import com.amazonaws.services.sns.AmazonSNSClient;
+import com.amazonaws.services.sns.model.CreateTopicRequest;
+import com.amazonaws.services.sns.model.CreateTopicResult;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
@@ -22,6 +27,20 @@ public class CourseService {
     }
 
 		public Course add(Course course) {
+        //create a new SNS client and set endpoint
+        // deprecated
+        // AmazonSNSClient snsClient = new AmazonSNSClient();
+        // snsClient.setRegion(Region.getRegion(Regions.US_EAST_1));
+        AmazonSNS sns = AmazonSNSClient.builder()
+            .withRegion("us-east-1")
+            .build();
+
+        //create a new SNS topic
+        CreateTopicRequest createTopicRequest = new CreateTopicRequest(course.getCourseId());
+        CreateTopicResult createTopicResult = sns.createTopic(createTopicRequest);
+
+        course.setNotificationTopic(createTopicResult.getTopicArn());
+
         mapper.save(course);
         return course;
     }

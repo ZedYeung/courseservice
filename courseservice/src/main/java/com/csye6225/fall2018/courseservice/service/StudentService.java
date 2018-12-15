@@ -48,13 +48,9 @@ public class StudentService {
 
         String notificationTopic = course.getNotificationTopic();
 
-        //create a new SNS topic
-        CreateTopicRequest createTopicRequest = new CreateTopicRequest(notificationTopic);
-        CreateTopicResult createTopicResult = sns.createTopic(createTopicRequest);
-
         //subscribe to an SNS topic
         SubscribeRequest subRequest = new SubscribeRequest(
-                            createTopicResult.getTopicArn(), "email", student.getEmailId());
+                            notificationTopic, "email", student.getEmailId());
         sns.subscribe(subRequest);
     }
 
