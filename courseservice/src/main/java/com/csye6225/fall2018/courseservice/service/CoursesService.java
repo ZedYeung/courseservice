@@ -1,49 +1,59 @@
 package com.csye6225.fall2018.courseservice.service;
-
-import com.csye6225.fall2018.courseservice.datamodel.InMemoryDatabase;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.csye6225.fall2018.courseservice.datamodel.DynamoDBConnector;
 import com.csye6225.fall2018.courseservice.datamodel.Course;
-import java.util.*;
 
-public class CoursesService {
-	static HashMap<Long, Course> coursesMap = InMemoryDatabase.getCourseDB();
-	
-	// Getting a list of all courses
-	// GET "..webapi/courses"
-	public List<Course> getAllCourses() {	
-		List<Course> list = new ArrayList<>();
-		for (Course course : coursesMap.values()) {
-			list.add(course);
-		}
-		return list ;
-	}
-	
-	//GET, get a course by its id
-	public Course getCourse(long courseId) {
-		return coursesMap.get(courseId);
-	}
+import java.util.HashMap;
+import java.util.List;
 
-	//POST, add a new course
-	public Course addCourse(Course course) {
-		long nextAvailableId = coursesMap.size() + 1;
-		course.setCourseId(nextAvailableId);
-		coursesMap.put(nextAvailableId, course);
-		return course;
-	}
-	
-	//PUT, update information of a course
-	public Course updateCourse(long courseId, Course course) {	
-//		Course oldCourse = coursesMap.get(courseId);
-//		courseId = oldCourse.getCourseId();
-//		course.setCourseId(courseId);
-		coursesMap.put(courseId, course);
-		return course;
-	}
-	
-	//DELETE, delete a course
-	public Course deleteCourse(long courseId) {
-		Course deletedCourseInfo = coursesMap.get(courseId);
-		coursesMap.remove(courseId);
-		return deletedCourseInfo;
-	}
+public class CourseService {
 
+    static DynamoDBConnector dynamoDb;
+    DynamoDBMapper mapper;
+
+    public CourseService() {
+        dynamoDb = new DynamoDBConnector();
+        dynamoDb.init();
+        mapper = new DynamoDBMapper(dynamoDb.getClient());
+    }
+
+		public Course add(Course course) {
+        mapper.save(course);
+        return course;
+    }
+
+    public Course delete(String courseId) {
+        Course course = get(courseId);
+        mapper.delete(course, new DynamoDBDeleteExpression());
+        return course;
+    }
+
+		public Course update(Course course) {
+        delete(course.getCourseId());
+        mapper.save(course);
+        return course;
+    }
+
+    public Course get(String courseId) {
+        HashMap<String, AttributeValue> eav = new HashMap<>();
+        eav.put(":v1",  new AttributeValue().withS(courseId));
+
+        DynamoDBQueryExpression<Course> queryExpression = new DynamoDBQueryExpression<Course>()
+                .withIndexName("courseId-index")
+                .withKeyConditionExpression("courseId = :v1")
+                .withConsistentRead(false)
+                .withExpressionAttributeValues(eav);
+
+        List<Course> list =  mapper.query(Course.class, queryExpression);
+        if (list.size() == 0) return null;
+        return list.get(0);
+    }
+
+    public List<Course> getAll(){
+        return mapper.scan(Course.class, new DynamoDBScanExpression());
+    }
 }
