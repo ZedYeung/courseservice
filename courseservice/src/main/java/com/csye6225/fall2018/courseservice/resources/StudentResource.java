@@ -19,6 +19,14 @@ public class StudentResource {
         return studentService.add(student);
     }
 
+    @POST
+    @Path("/{studentId}/register")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void register(@PathParam("studentId") String studentId, String courseId) {
+        studentService.register(studentId, courseId);
+    }
+
 		@DELETE
     @Path("/{studentId}")
     @Produces(MediaType.APPLICATION_JSON)
