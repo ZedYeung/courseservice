@@ -5,7 +5,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 import com.csye6225.fall2018.courseservice.datamodel.Student;
-import com.csye6225.fall2018.courseservice.service.StudentsService;
+import com.csye6225.fall2018.courseservice.service.StudentService;
 
 @Path("student")
 public class StudentResource {
