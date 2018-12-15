@@ -4,7 +4,7 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 
-public class DynamoDbConnector {
+public class DynamoDBConnector {
 
 	 static AmazonDynamoDB dynamoDb ;
 
