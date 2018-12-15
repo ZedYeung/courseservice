@@ -11,6 +11,7 @@ Student
      - joiningDate
      - department
      - registeredCourses - has list of registered courseIds
+     - emailId
 */
 
 @DynamoDBTable(tableName = "Student")
@@ -23,6 +24,7 @@ public class Student {
     private String joiningDate;
     private String department;
     private List<String> registeredCourses;
+    private String emailId;
 
     public Student() {}
 
@@ -90,6 +92,15 @@ public class Student {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    @DynamoDBAttribute(attributeName = "emailId")
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 }
 
