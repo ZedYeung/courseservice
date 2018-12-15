@@ -1,4 +1,10 @@
 package com.csye6225.fall2018.courseservice.service;
+
+import com.amazonaws.services.sns.AmazonSNS;
+import com.amazonaws.services.sns.AmazonSNSClient;
+import com.amazonaws.services.sns.model.CreateTopicRequest;
+import com.amazonaws.services.sns.model.CreateTopicResult;
+import com.amazonaws.services.sns.model.SubscribeRequest;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDeleteExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
@@ -6,6 +12,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.csye6225.fall2018.courseservice.datamodel.DynamoDBConnector;
 import com.csye6225.fall2018.courseservice.datamodel.Student;
+import com.csye6225.fall2018.courseservice.datamodel.Course;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +31,31 @@ public class StudentService {
 		public Student add(Student student) {
         mapper.save(student);
         return student;
+    }
+
+    public void register(String studentId, String courseId) {
+        CourseService courseService = new CourseService();
+        Course course = courseService.get(courseId);
+        Student student = get(studentId);
+
+        //create a new SNS client and set endpoint
+        // deprecated
+        // AmazonSNSClient snsClient = new AmazonSNSClient();
+        // snsClient.setRegion(Region.getRegion(Regions.US_EAST_1));
+        AmazonSNS sns = AmazonSNSClient.builder()
+						.withRegion("us-east-1")
+						.build();
+
+        String notificationTopic = course.getNotificationTopic();
+
+        //create a new SNS topic
+        CreateTopicRequest createTopicRequest = new CreateTopicRequest(notificationTopic);
+        CreateTopicResult createTopicResult = sns.createTopic(createTopicRequest);
+
+        //subscribe to an SNS topic
+        SubscribeRequest subRequest = new SubscribeRequest(
+                            createTopicResult.getTopicArn(), "email", student.getEmailId());
+        sns.subscribe(subRequest);
     }
 
 		public Student delete(String studentId) {
