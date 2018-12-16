@@ -9,6 +9,7 @@ Professors
      - lastName
      - joiningDate
      - department
+
 Course
      - Id (Dynamo Db generated) and hash key
      - courseId - DynamoDbIndexHashKey, a Global Secondary Index (GSI)
@@ -17,15 +18,19 @@ Course
      - department
      - boardId
      - listOfRegisteredStudents/roster - has student Id list (this is the roster)
+     - notificationTopic // NEW FIELD for storing sns topic.
+
 Board
      - Id (Dynamo Db generated) and hash key
      - boardId - DynamoDbIndexHashKey, a Global Secondary Index (GSI)
      - courseId
+
 Announcements
      - Id (Dynamo Db generated) and hash key
      - announcementId - dynamodb Index range key part of the GSI
      - announcementText - (ensure text size is no more than 160 characters)
      - boardId -DynamoDbIndexHashKey, part of the GSI Global Secondary Index (GSI)
+     - courseId - to send notification
 
 Student
      - Id (Dynamo Db generated) and hash key
@@ -35,6 +40,7 @@ Student
      - joiningDate
      - department
      - registeredCourses - has list of registered courseIds
+     - emailId - actually, it is email address
 ```
 
 ## API
@@ -71,6 +77,48 @@ http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/web
   ### student
   GET /student  
   GET /student/{studentId}  
-  POST /student  
+  POST /student
+  POST /  
   PUT /student/{studentId}  
   DELETE /student/{studentId}  
+
+## Register and receive notification with email
+POST /course
+```
+{
+    "boardId": "321",
+    "courseId": "6226",
+    "department": "IS",
+    "professorId": "171",
+    "roster": [],
+    "taId": "668"
+}
+```
+
+POST /student
+```
+{
+    "department": "IS",
+    "emailId": "XXX@XXX.edu",
+    "firstName": "A",
+    "joiningDate": "2017-10-11T20:20:11.234",
+    "lastName": "BC",
+    "registeredCourses": [],
+    "studentId": "007"
+}
+```
+
+POST /student/{studentId}/register
+```
+6226
+```
+
+POST /announcement
+```
+{
+  "announcementId": "6226",
+  "announcementText": "Hello World",
+  "boardId": "321",
+  "courseId": "6226"
+}
+```
