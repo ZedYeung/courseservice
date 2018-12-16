@@ -21,18 +21,23 @@ public class SendNotificationHandler implements RequestHandler<DynamodbEvent, St
 
     @Override
     public String handleRequest(DynamodbEvent event, Context context) {
+        context.getLogger().log("Processing event: " + event);
+
         for(DynamodbStreamRecord record : event.getRecords()) {
             if (record == null) {
+                context.getLogger().log("null record");
                 continue;
             }
 
             String recordEvent = record.getEventName();
             if (!recordEvent.equals("INSERT")) {
+                context.getLogger().log("not insert");
                 continue;
             }
 
             Map<String, AttributeValue> map = record.getDynamodb().getNewImage();
             if (map == null) {
+                context.getLogger().log("null map");
                 continue;
             }
 
@@ -49,7 +54,7 @@ public class SendNotificationHandler implements RequestHandler<DynamodbEvent, St
             PublishRequest pubRequest = new PublishRequest(notificationTopic, announcementText, subject);
             sns.publish(pubRequest);
         }
-        
-        return "Processed event: " + event;
+
+        return "Done";
     }
 }
