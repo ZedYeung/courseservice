@@ -7,6 +7,7 @@ Announcements
      - announcementId - dynamodb Index range key part of the GSI
      - announcementText - (ensure text size is no more than 160 characters)
      - boardId -DynamoDbIndexHashKey, part of the GSI Global Secondary Index (GSI)
+     - courseId - to send notification
 */
 
 @DynamoDBTable(tableName = "Announcement")
@@ -16,6 +17,7 @@ public class Announcement {
     private String announcementId;
     private String announcementText;
     private String boardId;
+    private String courseId;
 
     public Announcement() {
 
@@ -56,5 +58,14 @@ public class Announcement {
 
     public void setBoardId(String boardId) {
         this.boardId = boardId;
+    }
+
+    @DynamoDBAttribute(attributeName = "courseId")
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 }
