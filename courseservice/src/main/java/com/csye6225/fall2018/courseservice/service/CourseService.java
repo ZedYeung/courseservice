@@ -51,8 +51,9 @@ public class CourseService {
         return course;
     }
 
-		public Course update(Course course) {
-        delete(course.getCourseId());
+		public Course update(String courseId, Course course) {
+        delete(courseId);
+        course.setCourseId(courseId);
         mapper.save(course);
         return course;
     }

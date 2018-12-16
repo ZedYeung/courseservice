@@ -32,8 +32,9 @@ public class ProfessorService {
         return prof;
     }
 
-    public Professor update(Professor prof) {
-        delete(prof.getProfessorId());
+    public Professor update(String professorId, Professor prof) {
+        delete(professorId);
+        prof.setProfessorId(professorId);
         mapper.save(prof);
         return prof;
     }

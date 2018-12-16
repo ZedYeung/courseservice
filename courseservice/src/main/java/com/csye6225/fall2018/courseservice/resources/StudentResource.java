@@ -23,8 +23,8 @@ public class StudentResource {
     @Path("/{studentId}/register")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public void register(@PathParam("studentId") String studentId, String courseId) {
-        studentService.register(studentId, courseId);
+    public String register(@PathParam("studentId") String studentId, String courseId) {
+        return studentService.register(studentId, courseId);
     }
 
 		@DELETE
@@ -39,7 +39,7 @@ public class StudentResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Student update(@PathParam("studentId") String studentId, Student student) {
-        return studentService.update(student);
+        return studentService.update(studentId, student);
     }
 
 		@GET

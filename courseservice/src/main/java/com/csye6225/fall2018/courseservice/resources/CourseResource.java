@@ -31,7 +31,7 @@ public class CourseResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Course update(@PathParam("courseId") String courseId, Course course) {
-        return courseService.update(course);
+        return courseService.update(courseId, course);
     }
 
 		@GET

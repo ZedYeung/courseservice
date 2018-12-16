@@ -31,8 +31,10 @@ public class AnnouncementService {
         return announcement;
     }
 
-    public Announcement update(Announcement announcement) {
-        delete(announcement.getBoardId(), announcement.getAnnouncementId());
+    public Announcement update(String boardId, String announcementId, Announcement announcement) {
+        delete(boardId, announcementId);
+        announcement.setBoardId(boardId);
+        announcement.setAnnouncementId(announcementId);
         mapper.save(announcement);
         return announcement;
     }

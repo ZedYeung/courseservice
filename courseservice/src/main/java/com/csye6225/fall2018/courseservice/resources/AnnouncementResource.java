@@ -36,7 +36,7 @@ public class AnnouncementResource {
     public Announcement update(@PathParam("boardId") String boardId,
 															 @PathParam("announcementId") String announcementId,
                                Announcement announcement) {
-        return announcementService.update(announcement);
+        return announcementService.update(boardId, announcementId, announcement);
     }
 
 		@GET

@@ -31,8 +31,9 @@ public class BoardService {
         return board;
     }
 
-    public Board update(Board board) {
-        delete(board.getBoardId());
+    public Board update(String boardId, Board board) {
+        delete(boardId);
+        board.setBoardId(boardId);
         mapper.save(board);
         return board;
     }

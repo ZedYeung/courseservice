@@ -31,7 +31,7 @@ public class BoardResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Board update(@PathParam("boardId") String boardId, Board board) {
-        return boardService.update(board);
+        return boardService.update(boardId, board);
     }
 
 		@GET
