@@ -36,14 +36,26 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-	
+
     <dependencies>
-		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
-		<dependency>
-		    <groupId>com.amazonaws</groupId>
-		    <artifactId>aws-java-sdk</artifactId>
-		    <version>1.11.470</version>
-		</dependency>
+    		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+    		<dependency>
+    		    <groupId>com.amazonaws</groupId>
+    		    <artifactId>aws-java-sdk</artifactId>
+    		    <version>1.11.470</version>
+    		</dependency>
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-core -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-core</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-events -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-events</artifactId>
+            <version>2.2.4</version>
+        </dependency>
 
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
