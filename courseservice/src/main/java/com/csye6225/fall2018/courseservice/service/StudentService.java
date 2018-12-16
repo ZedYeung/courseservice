@@ -15,6 +15,7 @@ import com.csye6225.fall2018.courseservice.datamodel.Course;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class StudentService {
 
     static DynamoDBConnector dynamoDb;
@@ -31,25 +32,39 @@ public class StudentService {
         return student;
     }
 
-    public void register(String studentId, String courseId) {
+    public String register(String studentId, String courseId) {
         CourseService courseService = new CourseService();
         Course course = courseService.get(courseId);
         Student student = get(studentId);
-        
-        List<String> registeredCourses = student.getRegisteredCourses();
-        
-        if (registeredCourses.size() >= 3) {
-        	System.out.println("Not allow to register more than three courses");
-        	return;
+
+        if ( student == null ) {
+          return "invalid student";
         }
-        
+
+        if ( course == null ) {
+          return "invalid course";
+        }
+
+        List<String> registeredCourses = student.getRegisteredCourses();
+
+        if ( registeredCourses.contains(courseId) ) {
+          return "Already registered";
+        }
+
+        if (registeredCourses.size() >= 3) {
+        	return "Not allow to register more than three courses";
+        }
+
         List<String> roster = course.getRoster();
         roster.add(studentId);
-        registeredCourses.add(courseId);
-        
         course.setRoster(roster);
+        courseService.update(courseId, course);
+
+        registeredCourses.add(courseId);
         student.setRegisteredCourses(registeredCourses);
-        
+        update(studentId, student);
+
+        // System.out.println("subscribe");
         //create a new SNS client and set endpoint
         // deprecated
         // AmazonSNSClient snsClient = new AmazonSNSClient();
@@ -58,12 +73,11 @@ public class StudentService {
 						.withRegion("us-east-1")
 						.build();
 
-        String notificationTopic = course.getNotificationTopic();
-
         //subscribe to an SNS topic
         SubscribeRequest subRequest = new SubscribeRequest(
-                            notificationTopic, "email", student.getEmailId());
+                            course.getNotificationTopic(), "email", student.getEmailId());
         sns.subscribe(subRequest);
+        return studentId + " successfully register " + courseId;
     }
 
 		public Student delete(String studentId) {
@@ -72,8 +86,9 @@ public class StudentService {
         return student;
     }
 
-    public Student update(Student student) {
-        delete(student.getStudentId());
+    public Student update(String studentId, Student student) {
+        delete(studentId);
+        student.setStudentId(studentId);
         mapper.save(student);
         return student;
     }
