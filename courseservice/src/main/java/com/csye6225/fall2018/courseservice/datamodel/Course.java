@@ -52,7 +52,7 @@ public class Course {
         this.id = id;
     }
 
-    @DynamoDBAttribute(attributeName = "courseId")
+    // @DynamoDBAttribute(attributeName = "courseId")
     @DynamoDBIndexHashKey(attributeName = "courseId", globalSecondaryIndexName = "courseId-index")
     public String getCourseId() {
         return courseId;
@@ -114,5 +114,13 @@ public class Course {
 
     public void setNotificationTopic(String notificationTopic) {
         this.notificationTopic = notificationTopic;
+    }
+
+    @DynamoDBIgnore
+    @Override
+    public String toString() {
+        return  "id=" + getId() + ", courseId=" + getCourseId() + ", professorId=" + getProfessorId()
+                + ", department=" + getDepartment() + ", taId=" + getTaId()
+                + ", boardId=" + getBoardId() + ", notificationTopic=" + getNotificationTopic();
     }
 }

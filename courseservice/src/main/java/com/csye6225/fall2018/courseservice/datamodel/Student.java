@@ -52,7 +52,7 @@ public class Student {
         this.id = id;
     }
 
-    @DynamoDBAttribute(attributeName = "studentId")
+//    @DynamoDBAttribute(attributeName = "studentId")
     @DynamoDBIndexHashKey(attributeName = "studentId", globalSecondaryIndexName = "studentId-index")
     public String getStudentId() {
         return studentId;
@@ -114,6 +114,14 @@ public class Student {
 
     public void setEmailId(String emailId) {
         this.emailId = emailId;
+    }
+
+    @DynamoDBIgnore
+    @Override
+    public String toString() {
+        return  "id=" + getId() + ", studentId=" + getStudentId() + ", firstName=" + getFirstName()
+                + ", department=" + getDepartment() + ", joiningDate=" + getJoiningDate()
+                + ", email=" + getEmailId();
     }
 }
 
