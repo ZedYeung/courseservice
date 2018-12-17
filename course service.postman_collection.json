@@ -1,0 +1,352 @@
+{
+	"info": {
+		"_postman_id": "9a31c5be-e3c3-4f92-9ceb-cba95bb8b858",
+		"name": "course service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"courseId\": \"13\",\n    \"department\": \"IS\",\n    \"professorId\": \"111\",\n    \"roster\": [],\n    \"taId\": \"668\"\n}"
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/course",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post registerOffering Course",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"registrarId\": \"12234\",\n\t\"offeringId\": \"34321\",\n\t\"offeringType\": \"Course\",\n\t\"department\": \"IS\",\n\t\"perUnitPrice\": 1321\n}"
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/registerOffering",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"registerOffering"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post registerOffering Seminars",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"registrarId\": \"2234\",\n\t\"offeringId\": \"3421\",\n\t\"offeringType\": \"Seminars\",\n\t\"department\": \"Seminars\",\n\t\"perUnitPrice\": 321\n}"
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/registerOffering",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"registerOffering"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post course with boardId",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"courseId\": \"626\",\n    \"boardId\": \"2143\",\n    \"department\": \"IS\",\n    \"professorId\": \"11\",\n    \"roster\": [],\n    \"taId\": \"668\"\n}"
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/course",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post announcement",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"announcementId\": \"66\",\n  \"announcementText\": \"Hello World\",\n  \"boardId\": \"321\",\n  \"courseId\": \"6226\"\n}"
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/announcement",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"announcement"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get student",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/student",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get course",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/course",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post student",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"department\": \"IS\",\n    \"emailId\": \"XXX@XXX.edu\",\n    \"firstName\": \"A\",\n    \"joiningDate\": \"2017-10-11T20:20:11.234\",\n    \"lastName\": \"BC\",\n    \"registeredCourses\": [],\n    \"studentId\": \"007\"\n}"
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/student",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45154eca-5bc9-406a-ad9f-09fb3feac936",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json()[0];",
+							"    pm.expect(jsonData.value).to.eql(100);",
+							"});",
+							"",
+							"// pm.test(\"Body is correct\", function () {",
+							"//     pm.response.to.have.body(\"programName\");",
+							"",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "6226"
+				},
+				"url": {
+					"raw": "http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/webapi/student/123/register",
+					"protocol": "http",
+					"host": [
+						"neu-cyse6225-student-management-system",
+						"us-east-1",
+						"elasticbeanstalk",
+						"com"
+					],
+					"path": [
+						"webapi",
+						"student",
+						"123",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
