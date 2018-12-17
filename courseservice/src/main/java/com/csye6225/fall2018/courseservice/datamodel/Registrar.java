@@ -14,7 +14,7 @@ Registrar -
 public class Registrar {
 
     private String id;
-    private String registrationId;
+    private String registrarId;
     private String offeringId;
     private String offeringType;
     private String department;
@@ -24,9 +24,9 @@ public class Registrar {
 
     }
 
-    public Registrar(String registrationId, String offeringId, String offeringType,
+    public Registrar(String registrarId, String offeringId, String offeringType,
                       String department, double perUnitPrice) {
-        this.registrationId = registrationId;
+        this.registrarId = registrarId;
     		this.offeringId = offeringId;
     		this.offeringType = offeringType;
     		this.department = department;
@@ -43,14 +43,14 @@ public class Registrar {
         this.id = Id;
     }
 
-    // @DynamoDBAttribute(attributeName = "registrationId")
-    @DynamoDBIndexHashKey(attributeName = "registrationId", globalSecondaryIndexName = "registrationId-index")
-    public String getRegistrationId() {
-        return registrationId;
+    // @DynamoDBAttribute(attributeName = "registrarId")
+    @DynamoDBIndexHashKey(attributeName = "registrarId", globalSecondaryIndexName = "registrarId-index")
+    public String getRegistrarId() {
+        return registrarId;
     }
 
-    public void setRegistrationId(String registrationId) {
-        this.registrationId = registrationId;
+    public void setRegistrarId(String registrarId) {
+        this.registrarId = registrarId;
     }
 
     @DynamoDBAttribute(attributeName = "offeringId")

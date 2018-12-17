@@ -7,7 +7,7 @@ import java.util.List;
 import com.csye6225.fall2018.courseservice.datamodel.Registrar;
 import com.csye6225.fall2018.courseservice.service.RegistrarService;
 
-@Path("registrar")
+@Path("registerOffering")
 public class RegistrarResource {
 
     RegistrarService registrarService = new RegistrarService();
