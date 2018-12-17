@@ -5,7 +5,7 @@
 
     <groupId>com.csye6225.fall2018</groupId>
     <artifactId>courseservice</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <version>3.0.4-SNAPSHOT</version>
     <name>courseservice</name>
 
@@ -65,6 +65,13 @@
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180813</version>
+		</dependency>
+
     		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
     		<!-- <dependency>
     		    <groupId>com.amazonaws</groupId>
@@ -72,6 +79,12 @@
     		    <version>1.11.470</version>
     		</dependency> -->
 
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-stepfunctions -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-stepfunctions</artifactId>
+            <version>1.11.470</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sns -->
         <dependency>
             <groupId>com.amazonaws</groupId>
