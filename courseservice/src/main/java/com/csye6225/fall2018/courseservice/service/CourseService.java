@@ -27,20 +27,6 @@ public class CourseService {
     }
 
 		public Course add(Course course) {
-        //create a new SNS client and set endpoint
-        // deprecated
-        // AmazonSNSClient snsClient = new AmazonSNSClient();
-        // snsClient.setRegion(Region.getRegion(Regions.US_EAST_1));
-        AmazonSNS sns = AmazonSNSClient.builder()
-            .withRegion("us-east-1")
-            .build();
-
-        //create a new SNS topic
-        CreateTopicRequest createTopicRequest = new CreateTopicRequest(course.getCourseId());
-        CreateTopicResult createTopicResult = sns.createTopic(createTopicRequest);
-
-        course.setNotificationTopic(createTopicResult.getTopicArn());
-
         mapper.save(course);
         return course;
     }
