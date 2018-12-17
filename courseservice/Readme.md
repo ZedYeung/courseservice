@@ -41,6 +41,14 @@ Student
      - department
      - registeredCourses - has list of registered courseIds
      - emailId - actually, it is email address
+
+ Registrar
+    - Id (Dynamo Db generated) and hash key
+    - RegistrationId
+    - OfferingId
+    - OfferingType (Course, Counseling)
+    - Department
+    - PerUnitPrice (number, in USD)
 ```
 
 ## API
@@ -82,6 +90,14 @@ http://neu-cyse6225-student-management-system.us-east-1.elasticbeanstalk.com/web
   PUT /student/{studentId}  
   DELETE /student/{studentId}  
 
+  ### registerOffering
+  GET /registerOffering  
+  GET /registerOffering/{registerOfferingId}    
+  POST /registerOffering  
+  PUT /registerOffering/{registerOfferingId}  
+  DELETE /registerOffering/{registerOfferingId}  
+
+
 ## Register and receive notification with email
 POST /course
 ```
@@ -122,3 +138,26 @@ POST /announcement
   "courseId": "6226"
 }
 ```
+
+## Workflow to Create Registrar and Board for Course
+
+![workflow](./workflow.png)
+
+The Dynamodb stream for Course table will trigger a lambda.
+This lambda is essentially the start of a step function workflow.
+
+The workflows first step is to determine if the course is new and if resources need to be created for it.
+A course is new if boardId, listofRegisteredStudents and it’s notificationTopic field are empty.
+If the course is not new, the workflow stops.
+
+
+If the department name is “Seminars”
+    Your registrar should not create a record. End workflow here.
+
+If the department name is not “Seminars”
+    You will create a object in the Registrar table and continue the workflow.
+
+If the course is not “seminars”
+   you will  need to create a board object for the Course.
+   Also store the boardId in the relevant Course record.
+
